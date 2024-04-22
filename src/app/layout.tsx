@@ -23,11 +23,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <ErrorBoundary errorComponent={() => <div>Error</div>}>
-        <QueryClientProvider client={queryClient}>
-          <body>{children}</body>
-        </QueryClientProvider>
-      </ErrorBoundary>
+      <body>
+        <ErrorBoundary errorComponent={() => <div>Error</div>}>
+          <QueryClientProvider client={queryClient}>
+            {children}
+          </QueryClientProvider>
+        </ErrorBoundary>
+      </body>
     </html>
   );
 }
