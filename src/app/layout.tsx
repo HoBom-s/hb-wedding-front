@@ -1,8 +1,15 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { ErrorBoundary } from "next/dist/client/components/error-boundary";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false,
+    },
+  },
+});
 
 export const metadata: Metadata = {
   title: "HoBom Wedding",
@@ -16,7 +23,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <ErrorBoundary errorComponent={() => <div>Error</div>}>
+        <QueryClientProvider client={queryClient}>
+          <body>{children}</body>
+        </QueryClientProvider>
+      </ErrorBoundary>
     </html>
   );
 }
