@@ -27,6 +27,7 @@
     ],
     "no-var": "error",
     "no-use-before-define": "error",
-    "react/display-name": "off"
+    "react/display-name": "off",
+    "prefer-const": "error"
   }
 }
